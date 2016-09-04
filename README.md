@@ -5,7 +5,7 @@ A tiny DOM library.
 ```js
 import { voo } from 'voo';
 
-const form   = el('form');
+const form   = voo('form');
 const input  = voo('input');
 const button = voo('button');
 
@@ -36,7 +36,20 @@ document.body.appendChild(login());
   — Edsger W. Dijkstra, 1984
 
 
-- _Focus._ "Do One Thing and Do It Well" - this really is _just_ a DOM library, but you can build view components on top of it.
-- _Performance._ **Voo** is fast! Creating DOM with **Voo** is comparable to writing plain DOM API instructions, and is much faster than `innerHTML` on modern browers.
-- _Simplicity._ **Voo** is not here to abstract DOM away from you, it only simplifies the the most tedious parts of the API.
-- _Just JavaScript._ **Voo** doesn't require a build tool, it doesn't precompile anything, it doesn't require (nor support) JSX.
+### Core Principles
+
+- **Focus**.
+
+  "Do One Thing and Do It Well" - this really is _just_ a DOM library, but you can build view components on top of it.
+
+- **Performance**.
+
+  Voo is fast! Creating DOM with **Voo** is comparable to writing plain DOM API instructions, and is much faster than `innerHTML` on modern browers.
+
+- **Simplicity**.
+ 
+  Voo is not here to abstract DOM away from you, it only simplifies the the most tedious parts of the API.
+
+- **Just JavaScript**.
+
+  **Voo** doesn't require a build tool, it doesn't precompile anything, it doesn't require (nor support) JSX.
