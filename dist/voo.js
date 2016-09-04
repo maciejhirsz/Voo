@@ -6,6 +6,10 @@
 
 var doc = document;
 
+function text(content) {
+    return doc.createTextNode(content);
+}
+
 function createElement(query) {
     var cp = 0;
     var i = 0;
@@ -62,16 +66,8 @@ function voo(query) {
                 el.textContent = first;
             } else if (typeof first === 'function') {
                 first(el);
-            } else if (first.nodeType) {
-                el.appendChild(first);
             } else {
-                for (var attr in first) {
-                    if (attr in el) {
-                        el.attr = first[attr];
-                    } else {
-                        el.setAttribute(attr, first[attr]);
-                    }
-                }
+                el.appendChild(first);
             }
 
             var arg, i = 1;
@@ -81,18 +77,12 @@ function voo(query) {
                 if (typeof arg === 'function') {
                     arg(el);
                 } else {
-                    el.appendChild(typeof arg === 'string' ? doc.createTextNode(arg) : arg);
+                    el.appendChild(typeof arg === 'string' ? text(arg) : arg);
                 }
             }
         }
 
         return el;
-    }
-}
-
-function on(event, handler) {
-    return function(el) {
-        el.addEventListener(event, handler);
     }
 }
 
@@ -103,7 +93,7 @@ function template(root) {
 }
 
 exports.voo = voo;
-exports.on = on;
+exports.text = text;
 exports.template = template;
 
 Object.defineProperty(exports, '__esModule', { value: true });
