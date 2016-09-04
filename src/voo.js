@@ -49,8 +49,9 @@ export function voo(query) {
 
     return function (first) {
         var el = origin.cloneNode(false);
+        var len = arguments.length;
 
-        if (arguments.length) {
+        if (len) {
             if (typeof first === 'string') {
                 el.textContent = first;
             } else if (typeof first === 'function') {
@@ -59,7 +60,7 @@ export function voo(query) {
                 el.appendChild(first);
             }
 
-            var arg, i = 1, len = arguments.length;
+            var arg, i = 1;
             while (i < len) {
                 arg = arguments[i++];
 

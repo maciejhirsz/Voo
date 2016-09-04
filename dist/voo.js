@@ -20,7 +20,7 @@ function createCurry(single) {
     }
 }
 
-var set = createCurry(function (el, attribute, value) {
+var attr = createCurry(function (el, attribute, value) {
     if (attribute in el) {
         el[attribute] = value;
     } else {
@@ -83,8 +83,9 @@ function voo(query) {
 
     return function (first) {
         var el = origin.cloneNode(false);
+        var len = arguments.length;
 
-        if (arguments.length) {
+        if (len) {
             if (typeof first === 'string') {
                 el.textContent = first;
             } else if (typeof first === 'function') {
@@ -93,7 +94,7 @@ function voo(query) {
                 el.appendChild(first);
             }
 
-            var arg, i = 1, len = arguments.length;
+            var arg, i = 1;
             while (i < len) {
                 arg = arguments[i++];
 
@@ -111,11 +112,11 @@ function voo(query) {
 
 function template(root) {
     return function () {
-        root.cloneNode(true);
+        return root.cloneNode(true);
     }
 }
 
-exports.set = set;
+exports.attr = attr;
 exports.on = on;
 exports.voo = voo;
 exports.template = template;

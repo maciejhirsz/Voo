@@ -14,7 +14,7 @@ function createCurry(single) {
     }
 }
 
-export var set = createCurry(function (el, attribute, value) {
+export var attr = createCurry(function (el, attribute, value) {
     if (attribute in el) {
         el[attribute] = value;
     } else {
