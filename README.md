@@ -44,10 +44,10 @@ document.body.appendChild(login());
 
 - **Performance**.
 
-  Voo is fast! Creating DOM with **Voo** is comparable to writing plain DOM API instructions, and is much faster than `innerHTML` on modern browers.
+  Voo is fast! Creating DOM `Node`s with Voo is comparable to writing plain DOM API instructions, and is much faster than `innerHTML` on modern browers.
 
 - **Simplicity**.
- 
+
   Voo is not here to abstract DOM away from you, it only simplifies the the most tedious parts of the API.
 
 - **Just JavaScript**.
