@@ -19,6 +19,12 @@ document.body.appendChild(
 
 ## Philsophy
 
+> Simplicity is a great virtue but it requires hard work to achieve it and education to appreciate it. And to make matters worse: complexity sells better.
+
+  — Edsger W. Dijkstra, 1984
+  
+---
+
 1. **Focus**
 
    "Do One Thing and Do It Well" - this really is _just_ a DOM library, but you can build view components on top of it.
@@ -34,8 +40,3 @@ document.body.appendChild(
 4. **Just JavaScript**
 
    No build tools, no precompiled templates, no HTML. Syntax ought to be simple enough to render JSX unnecessary.
-
-
-> Simplicity is a great virtue but it requires hard work to achieve it and education to appreciate it. And to make matters worse: complexity sells better.
-
-  — Edsger W. Dijkstra, 1984
