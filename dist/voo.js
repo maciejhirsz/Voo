@@ -4,34 +4,6 @@
     (factory((global.voo = global.voo || {})));
 }(this, (function (exports) { 'use strict';
 
-function createCurry(single) {
-    return function (a, b) {
-        if (arguments.length === 2) {
-            return function (el) {
-                single(el, a, b);
-            }
-        }
-
-        return function (el) {
-            for (var key in a) {
-                single(el, key, a[key]);
-            }
-        }
-    }
-}
-
-var attr = createCurry(function (el, attribute, value) {
-    if (attribute in el) {
-        el[attribute] = value;
-    } else {
-        el.setAttribute(attribute, value);
-    }
-})
-
-var on = createCurry(function (el, event, handler) {
-    el.addEventListener(event, handler);
-});
-
 var doc = document;
 
 function createElement(query) {
@@ -90,8 +62,16 @@ function voo(query) {
                 el.textContent = first;
             } else if (typeof first === 'function') {
                 first(el);
-            } else {
+            } else if (first.nodeType) {
                 el.appendChild(first);
+            } else {
+                for (var attr in first) {
+                    if (attr in el) {
+                        el.attr = first[attr];
+                    } else {
+                        el.setAttribute(attr, first[attr]);
+                    }
+                }
             }
 
             var arg, i = 1;
@@ -110,15 +90,20 @@ function voo(query) {
     }
 }
 
+function on(event, handler) {
+    return function(el) {
+        el.addEventListener(event, handler);
+    }
+}
+
 function template(root) {
     return function () {
         return root.cloneNode(true);
     }
 }
 
-exports.attr = attr;
-exports.on = on;
 exports.voo = voo;
+exports.on = on;
 exports.template = template;
 
 Object.defineProperty(exports, '__esModule', { value: true });

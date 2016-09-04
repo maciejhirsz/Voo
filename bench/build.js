@@ -78,8 +78,16 @@ function voo(query) {
                 el.textContent = first;
             } else if (typeof first === 'function') {
                 first(el);
-            } else {
+            } else if (first.nodeType) {
                 el.appendChild(first);
+            } else {
+                for (var attr in first) {
+                    if (attr in el) {
+                        el.attr = first[attr];
+                    } else {
+                        el.setAttribute(attr, first[attr]);
+                    }
+                }
             }
 
             var arg, i = 1;
