@@ -102,13 +102,24 @@ function voo(query) {
     }
 }
 
+function fragment() {
+    var frag = doc.createDocumentFragment();
+
+    for (var i = 0; i < arguments.length; i++) {
+        var arg = arguments[i];
+        frag.appendChild(typeof arg === 'string' ? text(arg) : arg);
+    }
+
+    return frag;
+}
+
 function template(root) {
     return function () {
         return root.cloneNode(true);
     }
 }
 
-var header = voo('h1.voo');
+var header = voo('h1.voo-header');
 var b = voo('b');
 var p = voo('p');
 var div = voo('div');
@@ -129,7 +140,7 @@ bench('Vanilla JS <div> with children', function() {
     var div = document.createElement('div');
 
     var header = document.createElement('h1');
-    header.className = 'voo';
+    header.className = 'voo-header';
 
     var b = document.createElement('b');
     b.appendChild(document.createTextNode('Voo'));
@@ -173,6 +184,16 @@ var temp = template(
 bench('Voo <div> with children (template)', function() {
     temp();
 });
+
+const paragraph = voo('p')
+const bold      = voo('b');
+
+document.body.appendChild(
+    fragment(
+        header('Hello ', bold('Voo'), '!'),
+        paragraph('This is just a simple example demonstrating how easy Voo is.')
+    )
+);
 
 console.log(temp());
 

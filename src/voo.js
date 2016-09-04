@@ -76,4 +76,3 @@ export function voo(query) {
         return el;
     }
 }
-

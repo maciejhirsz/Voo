@@ -86,6 +86,17 @@ function voo(query) {
     }
 }
 
+function fragment() {
+    var frag = doc.createDocumentFragment();
+
+    for (var i = 0; i < arguments.length; i++) {
+        var arg = arguments[i];
+        frag.appendChild(typeof arg === 'string' ? text(arg) : arg);
+    }
+
+    return frag;
+}
+
 function template(root) {
     return function () {
         return root.cloneNode(true);
@@ -94,6 +105,7 @@ function template(root) {
 
 exports.voo = voo;
 exports.text = text;
+exports.fragment = fragment;
 exports.template = template;
 
 Object.defineProperty(exports, '__esModule', { value: true });
