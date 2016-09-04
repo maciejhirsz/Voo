@@ -12,7 +12,7 @@ const bold      = voo('b');
 document.body.appendChild(
     fragment(
         header('Hello ', bold('Voo'), '!'),
-        paragraph('This is just a simple example, but it shows how dead simple Voo is.')
+        paragraph('This is just an example, but it shows well just how simple Voo is.')
     )
 );
 ```
