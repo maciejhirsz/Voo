@@ -11,3 +11,13 @@ export function fragment() {
 
     return frag;
 }
+
+fragment.from = function(array) {
+    var frag = fragment();
+
+    for (var i = 0; i < array.length; i++) {
+        frag.appendChild(array[i]);
+    }
+
+    return frag;
+}
