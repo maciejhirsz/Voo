@@ -16,7 +16,8 @@ fragment.from = function(array) {
     var frag = fragment();
 
     for (var i = 0; i < array.length; i++) {
-        frag.appendChild(array[i]);
+        var item = array[i];
+        frag.appendChild(typeof item === 'string' ? text(item) : item);
     }
 
     return frag;

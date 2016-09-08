@@ -1,22 +1,22 @@
 
 import { bench } from './bench.js';
-import { voo, template, fragment } from '../../src/index.js';
+import { make, template, fragment } from '../../src/index.js';
 
-var header = voo('h1.voo-header');
-var b = voo('b');
-var p = voo('p');
-var div = voo('div');
-var foobar = voo('#baz.foo.bar');
+var header = make('h1.voo-header');
+var b      = make('b');
+var p      = make('p');
+var div    = make('div');
+var voobar = make('#voo.bar.baz');
 
 bench('document.createElement and set stuff', function() {
   var el = document.createElement('div');
-  el.id = 'baz';
-  el.className = 'foo bar';
+  el.id = 'voo';
+  el.className = 'bar baz';
   el.textContent = 'Hello world!';
 })
 
-bench('foobar()', function() {
-  foobar('Hello world!');
+bench('voobar()', function() {
+  voobar('Hello world!');
 });
 
 bench('Vanilla JS <div> with children', function() {
@@ -26,18 +26,18 @@ bench('Vanilla JS <div> with children', function() {
     header.className = 'voo-header';
 
     var b = document.createElement('b');
-    b.appendChild(document.createTextNode('Voo'));
+    b.textContent = 'Voo';
 
-    header.appendChild(document.createTextNode('Hello '));
+    header.textContent = 'Hello ';
     header.appendChild(b);
     header.appendChild(document.createTextNode('!'));
 
     div.appendChild(header);
 
     var p = document.createElement('p');
-    p.appendChild(document.createTextNode('Bacon ipsum dolor amet meatloaf meatball shank porchetta \
+    p.textContent = 'Bacon ipsum dolor amet meatloaf meatball shank porchetta \
              picanha bresaola short loin short ribs capicola fatback beef \
-             ribs corned beef ham hock.'));
+             ribs corned beef ham hock.';
 
     div.appendChild(p);
 });
@@ -68,13 +68,13 @@ bench('Voo <div> with children (template)', function() {
     temp();
 });
 
-const paragraph = voo('p')
-const bold      = voo('b');
+const paragraph = make('p')
+const bold      = make('b');
 
 document.body.appendChild(
     fragment(
         header('Hello ', bold('Voo'), '!'),
-        paragraph('This is just a simple example, but it shows how dead simple Voo is.')
+        paragraph('This is just an example, but it shows well just how simple Voo is.')
     )
 );
 

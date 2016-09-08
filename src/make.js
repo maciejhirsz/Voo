@@ -45,7 +45,7 @@ function createElement(query) {
     return doc.createElement(query);
 }
 
-export function voo(query) {
+export function make(query) {
     var origin;
 
     return function (first) {
@@ -58,20 +58,19 @@ export function voo(query) {
                 el.textContent = first;
             } else if (typeof first === 'function') {
                 first(el);
-            } else if (first.nodeType) {
+            } else {
                 el.appendChild(first);
             }
 
             var arg, i = 1;
             while (i < len) {
                 arg = arguments[i++];
-                el.appendChild(typeof arg === 'string' ? text(arg) : arg);
 
-                // if (typeof arg === 'function') {
-                //     arg(el);
-                // } else {
-                //     el.appendChild(typeof arg === 'string' ? text(arg) : arg);
-                // }
+                if (typeof arg === 'function') {
+                    arg(el);
+                } else {
+                    el.appendChild(typeof arg === 'string' ? text(arg) : arg);
+                }
             }
         }
 

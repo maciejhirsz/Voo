@@ -3,11 +3,11 @@
 A tiny DOM library.
 
 ```js
-import { voo, fragment } from 'voo';
+import { make, fragment } from 'voo';
 
-const header    = voo('h1.voo-header');
-const paragraph = voo('p')
-const bold      = voo('b');
+const header    = make('h1.voo-header');
+const paragraph = make('p')
+const bold      = make('b');
 
 document.body.appendChild(
     fragment(

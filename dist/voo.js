@@ -54,7 +54,7 @@ function createElement(query) {
     return doc.createElement(query);
 }
 
-function voo(query) {
+function make(query) {
     var origin;
 
     return function (first) {
@@ -67,20 +67,19 @@ function voo(query) {
                 el.textContent = first;
             } else if (typeof first === 'function') {
                 first(el);
-            } else if (first.nodeType) {
+            } else {
                 el.appendChild(first);
             }
 
             var arg, i = 1;
             while (i < len) {
                 arg = arguments[i++];
-                el.appendChild(typeof arg === 'string' ? text(arg) : arg);
 
-                // if (typeof arg === 'function') {
-                //     arg(el);
-                // } else {
-                //     el.appendChild(typeof arg === 'string' ? text(arg) : arg);
-                // }
+                if (typeof arg === 'function') {
+                    arg(el);
+                } else {
+                    el.appendChild(typeof arg === 'string' ? text(arg) : arg);
+                }
             }
         }
 
@@ -103,7 +102,8 @@ fragment.from = function(array) {
     var frag = fragment();
 
     for (var i = 0; i < array.length; i++) {
-        frag.appendChild(array[i]);
+        var item = array[i];
+        frag.appendChild(typeof item === 'string' ? text(item) : item);
     }
 
     return frag;
@@ -115,7 +115,7 @@ function template(root) {
     }
 }
 
-exports.voo = voo;
+exports.make = make;
 exports.text = text;
 exports.fragment = fragment;
 exports.template = template;

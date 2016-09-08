@@ -1,16 +1,16 @@
 {
   "name": "voo",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "Tiny DOM library",
   "main": "dist/voo.js",
   "jsnext:main": "src/index.js",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/maciejhirsz/voo.git"
+    "type": "git",
+    "url": "https://github.com/maciejhirsz/voo.git"
   },
   "scripts": {
-    "test": "echo \"No tests yet\" && exit 0",
-    "build": "npm run test && npm run build-js && npm run uglify",
+    "test": "browserify test/*.js | tape-run",
+    "build": "npm run build-js && npm run build-bench && npm run uglify && npm run test",
     "build-js": "rollup -n voo -f umd src/index.js -o dist/voo.js",
     "build-bench": "rollup -n bench -f iife bench/src/index.js -o bench/build.js",
     "uglify": "uglifyjs dist/voo.js -cmo dist/voo.min.js"
@@ -18,7 +18,10 @@
   "author": "Maciej Hirsz <maciej.hirsz@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "browserify": "^13.1.0",
     "rollup": "^0.34.13",
+    "tape": "^4.6.0",
+    "tape-run": "^2.1.4",
     "uglify-js": "^2.7.3"
   }
 }
