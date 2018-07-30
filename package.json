@@ -1,6 +1,6 @@
 {
   "name": "voo",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Tiny DOM library",
   "main": "dist/voo.js",
   "jsnext:main": "src/index.js",
